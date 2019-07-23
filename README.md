@@ -63,3 +63,7 @@ After 1 and 2, you're ready to use the tool...
         📜  Downloading 5532 subjects referenced by resources now... |################################| 100%
         📜  Downloading 16338 agents referenced by resources now... |################################| 100%
         🌈  done!
+
+## Run in a docker!
+
+I set up a docker container to run this app, mostly to test that the setup script was working. You may prefer to run it that way, just look in the [/docker](/docker) folder.
