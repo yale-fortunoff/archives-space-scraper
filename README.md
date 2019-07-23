@@ -2,22 +2,17 @@
 
 Jake Kara jake.kara@yale.edu jake@jakekara.com
 
-Scraper for ArchivesSpace repositories. Library and CLI tool. The CLI tool
-simply makes a local copy of your entire ASpace repo in JSON files, with a
-folder structure that matches the API urls. This is useful for data analysis and
-restructuring without constantly pinging the API.
+## What is it?
 
-This is an offshoot of code I wrote for a specific prnoject. That code will be
-available in .ipynb notebooks in the near future, and will make the use case for
-this tool more obvious.
+CLI tool to download all of the resources, linked_agents and subjects associated
+with a specific repo into a directory structure that mirrors the API urls.
 
 ## Status
 
-This was thrown together quickly. 
+Docs, examples, and tests would help! I expect to have some examples of how to
+use the library code in .ipynb files soon-ish.
 
-Docs, examples, and tests would help! Example notebooks are forthcoming, but
-docs and tests are unlikely.
-
+This code was put together very quickly. That said, it's probably very buggy.
 I've only run it on MacOS. There may be some issues with the setup.py script,
 such as missing dependencies, that need to be worked out.
 
