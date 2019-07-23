@@ -58,7 +58,7 @@ After 1 and 2, you're ready to use the tool...
         -f, --force           force redownloading of existing files
 
 
-# CLI tool example usage:
+## CLI tool example usage:
 
         $ archives-space-scraper --repo-id=14 --output-dir=./local-data
         🔑  Reading password for 'default' from '~/.archives-space-scraper/credentials'...
