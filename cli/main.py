@@ -19,14 +19,14 @@ def combine_all_arrs(resources, key="subjects"):
 def copy_resources(client, arr, label="items"):
 
     bar = Bar("📜  Downloading %d %s now..." % (len(arr), label),
-        max=len(arr), 
-        suffix='%(percent)d%%') 
+        max=len(arr),
+        suffix='%(percent)d%%')
 
     # resources=[]
     # for resource_id in resource_ids:
     #     resources.append(repo.copy_resource("/repositories/%s/resources/%s" % (args.repo_id, str(resource_id)), redownload=args.force))
-        
-    
+
+
 
     ret = []
     for resource_ref in arr:
@@ -38,20 +38,20 @@ def copy_resources(client, arr, label="items"):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-id", 
-        type=int, 
+    parser.add_argument("--repo-id",
+        type=int,
         required=True,
         help="numeric repo ID")
-    parser.add_argument("--output-dir", 
-        type=str, 
+    parser.add_argument("--output-dir",
+        type=str,
         help="local to store downloaded objects",
         default="./out"
     )
-    parser.add_argument("-p", "--profile", 
+    parser.add_argument("-p", "--profile",
         help="which profile to use from credentials file",
         default="default"
     )
-    parser.add_argument("-c", "--credentials-file", 
+    parser.add_argument("-c", "--credentials-file",
         help="path to credentials file",
         default="~/.archives-space-scraper/credentials"
     )
@@ -69,24 +69,24 @@ def main():
 
     # Load credentials
     try:
-        print ("🔑  Reading password for '%s' from '%s'..." % (args.profile, args.credentials_file))
+        print ("Reading password for '%s' from '%s'..." % (args.profile, args.credentials_file))
         credentials = get_credentials_from_file(
                 fpath=args.credentials_file,
                 profile=args.profile
                 )
     except Exception as e:
-        print ("🚨 Error: %s" % e)
+        print ("Error: %s" % e)
         exit(-1)
 
     # Log in to API
     try:
-        print ("🔐  Logging in as %s at %s..." % (credentials["username"], credentials["baseurl"]))
-        repo = ArchiveCloner(args.repo_id, 
+        print ("Logging in as %s at %s..." % (credentials["username"], credentials["baseurl"]))
+        repo = ArchiveCloner(args.repo_id,
             root=args.output_dir,
             credentials=credentials
         )
     except Exception as e:
-        print ("🚨 Error: %s" % e)
+        print ("Error: %s" % e)
         exit(-1)
 
 
@@ -95,19 +95,19 @@ def main():
     resource_ids = repo.copy_resource(url, redownload=args.force)
 
     # Download each resource
-    print ("📇  Downloaded index of %d resources..." % len(resource_ids))
+    print ("Downloaded index of %d resources..." % len(resource_ids))
     # num_items = len(resource_ids)
     resources = copy_resources(
-        repo, 
+        repo,
         ["/repositories/%s/resources/%s" % (args.repo_id, str(resource_id)) for resource_id in resource_ids],
         label="resources")
 
 
     # Get all of the linked subjects and agents
-    
+
     combine_all_subject_ids = lambda resources: combine_all_arrs(resources, key="subjects")
     combine_all_agent_ids = lambda resources: combine_all_arrs(resources, key="linked_agents")
-    
+
     all_subject_ids = combine_all_subject_ids(resources)
     all_agent_ids = combine_all_agent_ids(resources)
 
@@ -121,7 +121,7 @@ def main():
         label="agents referenced by resources"
     )
 
-    print ("🌈  done!")
+    print ("done!")
 
 if __name__ == "__main__":
     main()
