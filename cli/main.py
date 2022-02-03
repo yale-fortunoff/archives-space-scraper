@@ -18,7 +18,7 @@ def combine_all_arrs(resources, key="subjects"):
 
 def copy_resources(client, arr, label="items"):
 
-    bar = Bar("📜  Downloading %d %s now..." % (len(arr), label),
+    bar = Bar("Downloading %d %s now..." % (len(arr), label),
         max=len(arr),
         suffix='%(percent)d%%')
 
